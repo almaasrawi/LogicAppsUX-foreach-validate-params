@@ -472,7 +472,7 @@ export class SchemaProcessor {
     const contentHint = schema[SwaggerConstants.ExtensionProperties.ContentHint];
     const description = schema.description;
     const dynamicallyAdded = schema[SwaggerConstants.ExtensionProperties.DynamicallyAdded];
-    const dynamicValues = getParameterDynamicValues(schema);
+    const dynamicValues = getParameterDynamicValues(schema) || (schema.items && getParameterDynamicValues(schema.items));
     const editor = getEditorForParameter(schema, dynamicValues);
     const editorOptions = dynamicValues ? { options: [] } : schema[SwaggerConstants.ExtensionProperties.EditorOptions];
     const encode = schema[SwaggerConstants.ExtensionProperties.Encode];
@@ -515,7 +515,7 @@ export class SchemaProcessor {
       description,
       dynamicallyAdded,
       dynamicSchema: getParameterDynamicSchema(schema),
-      dynamicValues: getParameterDynamicValues(schema),
+      dynamicValues: getParameterDynamicValues(schema) || (schema.items && getParameterDynamicValues(schema.items)),
       dependencies: schema[SwaggerConstants.ExtensionProperties.InputDependencies],
       editor,
       editorOptions,

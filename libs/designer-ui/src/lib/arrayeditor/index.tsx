@@ -1,6 +1,6 @@
 import type { ValueSegment } from '../editor';
 import { EditorCollapseToggle } from '../editor';
-import type { BaseEditorProps, CastHandler } from '../editor/base';
+import type { BaseEditorProps, CallbackHandler, CastHandler } from '../editor/base';
 import type { LabelProps } from '../label';
 import { CollapsedArray } from './collapsedarray';
 import { ExpandedComplexArray } from './expandedcomplexarray';
@@ -55,6 +55,7 @@ export interface ArrayEditorProps extends BaseEditorProps {
   itemSchema: ArrayItemSchema;
   arrayType: ArrayType;
   castParameter: CastHandler;
+  onMenuOpen?: CallbackHandler;
 }
 
 export const ArrayEditor: React.FC<ArrayEditorProps> = ({
@@ -66,6 +67,7 @@ export const ArrayEditor: React.FC<ArrayEditorProps> = ({
   itemSchema,
   placeholder,
   onChange,
+  onMenuOpen,
   castParameter,
   dataAutomationId,
   ...baseEditorProps
@@ -174,6 +176,7 @@ export const ArrayEditor: React.FC<ArrayEditorProps> = ({
           labelProps={labelProps}
           canDeleteLastItem={canDeleteLastItem}
           setItems={updateSimpleItems}
+          onMenuOpen={onMenuOpen}
         />
       )}
       <div className="msla-array-commands">

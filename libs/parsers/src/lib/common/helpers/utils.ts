@@ -182,7 +182,7 @@ export function getArrayOutputMetadata(schema: SchemaObject, required: boolean, 
 }
 
 export function getEditorForParameter(parameter: SchemaObject, dynamicValues: ParameterDynamicValues | undefined): string | undefined {
-  return dynamicValues
+  return dynamicValues && parameter.type !== 'array'
     ? isLegacyDynamicValuesTreeExtension(dynamicValues) || isDynamicTreeExtension(dynamicValues)
       ? 'filepicker'
       : 'combobox'

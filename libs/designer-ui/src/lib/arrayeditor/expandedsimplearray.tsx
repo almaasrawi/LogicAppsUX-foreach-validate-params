@@ -1,6 +1,6 @@
 import type { ComboboxItem, SimpleArrayItem, TokenPickerButtonEditorProps, ValueSegment } from '..';
 import { Combobox, StringEditor } from '..';
-import type { ChangeState, GetTokenPickerHandler } from '../editor/base';
+import type { CallbackHandler, ChangeState, GetTokenPickerHandler } from '../editor/base';
 import { notEqual } from '../editor/base/utils/helper';
 import { Label } from '../label';
 import type { LabelProps } from '../label';
@@ -36,6 +36,7 @@ export interface ExpandedSimpleArrayProps {
   tokenPickerButtonProps?: TokenPickerButtonEditorProps;
   getTokenPicker: GetTokenPickerHandler;
   setItems: (newItems: SimpleArrayItem[]) => void;
+  onMenuOpen?: CallbackHandler;
 }
 
 export const ExpandedSimpleArray = ({
@@ -47,6 +48,7 @@ export const ExpandedSimpleArray = ({
   itemEnum,
   setItems,
   readonly,
+  onMenuOpen,
   ...props
 }: ExpandedSimpleArrayProps): JSX.Element => {
   const intl = useIntl();
@@ -97,6 +99,7 @@ export const ExpandedSimpleArray = ({
                 initialValue={item.value ?? []}
                 placeholder={placeholder}
                 onChange={(newState) => handleArrayElementSaved(item.value ?? [], newState, index)}
+                onMenuOpen={() => onMenuOpen?.()}
               />
             ) : (
               <StringEditor

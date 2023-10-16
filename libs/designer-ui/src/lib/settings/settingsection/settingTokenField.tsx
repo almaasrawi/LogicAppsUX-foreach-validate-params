@@ -205,6 +205,7 @@ export const TokenField = ({
           itemSchema={editorViewModel.itemSchema}
           castParameter={onCastParameter}
           onChange={onValueChange}
+          onMenuOpen={onComboboxMenuOpen}
           dataAutomationId={`msla-setting-token-editor-arrayeditor-${labelForAutomationId}`}
         />
       );

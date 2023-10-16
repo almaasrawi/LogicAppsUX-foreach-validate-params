@@ -26,6 +26,7 @@
     "build:vscode-datamapper": "nx run vs-code-data-mapper:build && nx run vs-code-data-mapper-react:build",
     "build:utils": "nx run utils:build",
     "build:docs": "nx build logic-apps-ux-docs",
+    "build:designer-ui": "nx run designer-ui:build --parallel",
     "start:docs": "nx serve logic-apps-ux-docs",
     "bump": "standard-version --no-verify",
     "vscode:designer:pack:step1": "cd ./dist/apps/vs-code-designer && npm install",
